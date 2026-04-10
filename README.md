@@ -157,6 +157,12 @@ Contributions are welcome! Feel free to:
 
 ---
 
+## 🛡️ License
+
+This project is licensed under the MIT License.
+
+---
+
 ## 💡 Final Note
 
 This project reimagines social networking by prioritizing **substance over noise** — making it easier to share meaningful, long-form content in a controlled and community-driven environment.
