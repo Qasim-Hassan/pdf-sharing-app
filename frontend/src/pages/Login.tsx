@@ -1,6 +1,7 @@
-import { useState } from "react"
-import {API} from "../api/api"
-import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import {API} from "../api/api";
+import { useNavigate } from "react-router-dom";
+import { TextField, Button, Box, Paper, Typography } from "@mui/material";
 
 const Login = () => {
 
@@ -17,31 +18,56 @@ const Login = () => {
     form.append("username", email)
     form.append("password", password)
 
-    const res = await API.post("/login/", form)
+    // const res = await API.post("/login/", form)
 
-    localStorage.setItem("token", res.data.access_token)
+    // localStorage.setItem("token", res.data.access_token)
     navigate("/", { replace: true }); 
     
   }
 
   return (
     <form onSubmit={handleSubmit}>
+      <Paper elevation={3} sx={{ padding: 4, borderRadius: 3, maxWidth: 400, margin: "auto" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+          }}
+        >
+          
+          <Typography variant="h5" align="center">
+            Login
+          </Typography>
 
-      <input
-        placeholder="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+          <TextField
+            label="Email"
+            variant="outlined"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            fullWidth
+          />
 
-      <input
-        type="password"
-        placeholder="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+          <TextField
+            label="Password"
+            type="password"
+            variant="outlined"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            fullWidth
+          />
 
-      <button>Login</button>
+          <Button
+            type="submit"
+            variant="contained"
+            size="large"
+            fullWidth
+          >
+            Login
+          </Button>
 
+        </Box>
+      </Paper>
     </form>
   )
 }
