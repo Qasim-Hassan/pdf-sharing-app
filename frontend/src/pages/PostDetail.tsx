@@ -4,6 +4,16 @@ import {API, backendURL} from "../api/api"
 import { jwtDecode } from "jwt-decode"
 import Navbar from "../components/Navbar"
 import type { PostDetail as PostType } from "../types/types"
+import {
+  Container,
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Paper,
+  Stack,
+  Divider,
+} from "@mui/material";
 
 interface TokenPayload {
     user_id: number
@@ -124,68 +134,122 @@ const PostDetail = () => {
   return (
     <>
       {!editMode && (
-      <div>
-        <Navbar />
+        <div>
+          <Navbar />
 
-        <h1>{post.Post.title}</h1>
-        <div onContextMenu={(e)=> e.preventDefault()} style={{userSelect: "none"}}>
-            <iframe
-            src={`${backendURL}/${post.Post.content}`}
-            width="100%"
-            height="600px"
-          />
-        
+          <Container maxWidth="md" sx={{ mt: 4 }}>
+            <Paper sx={{ p: 4, borderRadius: 3 }}>
+              
+              <Typography variant="h4" sx={{ mb: 2 }}>
+                {post.Post.title}
+              </Typography>
+
+              <Box
+                onContextMenu={(e) => e.preventDefault()}
+                sx={{
+                  userSelect: "none",
+                  mb: 3,
+                  borderRadius: 2,
+                  overflow: "hidden",
+                  border: "1px solid",
+                  borderColor: "divider",
+                }}
+              >
+                <iframe
+                  src={`${backendURL}/${post.Post.content}`}
+                  width="100%"
+                  height="600px"
+                  style={{ border: "none" }}
+                />
+              </Box>
+
+              <Stack spacing={1} sx={{ mb: 3 }}>
+                <Typography variant="body2" color="text.secondary">
+                  Author: {post.Post.owner.email}
+                </Typography>
+
+                <Typography variant="body2" color="text.secondary">
+                  Subscribers: {post.subscribers}
+                </Typography>
+              </Stack>
+
+              <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+                <Button variant="outlined" color="error" onClick={unsubscribe}>
+                  Unsubscribe
+                </Button>
+              </Stack>
+
+              {currentUserId === post.Post.owner.id && (
+                <>
+                  <Divider sx={{ my: 2 }} />
+
+                  <Stack direction="row" spacing={2}>
+                    {!editMode && (
+                      <Button
+                        variant="contained"
+                        onClick={() => setEditMode(true)}
+                      >
+                        Edit
+                      </Button>
+                    )}
+
+                    <Button
+                      variant="outlined"
+                      color="error"
+                      onClick={handleDelete}
+                    >
+                      Delete
+                    </Button>
+                  </Stack>
+                </>
+              )}
+
+            </Paper>
+          </Container>
         </div>
 
-        <p>Author: {post.Post.owner.email}</p>
-
-        <p>Subscribers: {post.subscribers}</p>
-
-        <button onClick={unsubscribe}>
-          Unsubscribe
-        </button>
-        <br />
-        <br/>
-        {currentUserId === post.Post.owner.id && (
-
-          <div>
-
-            {!editMode && (
-              <button onClick={() => setEditMode(true)}>
-                Edit
-              </button>
-            )}
-
-            <button onClick={handleDelete}>
-              Delete
-            </button>
-
-          </div>
-
-        )}
-
-      </div>
       )}
 
       {editMode && (
         <div>
           <Navbar />
 
-          <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
+          <Container maxWidth="sm" sx={{ mt: 4 }}>
+            <Paper sx={{ p: 4, borderRadius: 3 }}>
+              <Stack spacing={2}>
 
-          <input
-            type="file"
-            accept="application/pdf"
-            onChange={(e) => setFile(e.target.files?.[0] || null)}
-          />
+                <Typography variant="h5">
+                  Edit Post
+                </Typography>
 
-          <button onClick={handleUpdate}>
-            Save
-          </button>
+                <TextField
+                  label="Title"
+                  value={title}
+                  onChange={(e: any) => setTitle(e.target.value)}
+                  fullWidth
+                />
 
+                <Button variant="outlined" component="label">
+                  Upload New PDF
+                  <input
+                    type="file"
+                    accept="application/pdf"
+                    hidden
+                    onChange={(e) => setFile(e.target.files?.[0] || null)}
+                  />
+                </Button>
+
+                <Button
+                  variant="contained"
+                  size="large"
+                  onClick={handleUpdate}
+                >
+                  Save
+                </Button>
+
+              </Stack>
+            </Paper>
+          </Container>
         </div>
       )}
     </>
