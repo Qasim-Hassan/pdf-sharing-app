@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom"
+import { Box, Button } from "@mui/material";
+
 
 const Navbar = () => {
 
@@ -12,22 +14,39 @@ const Navbar = () => {
   }
 
   return (
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        mb: 3,
+        px: 2,
+      }}
+    >
+      <Box sx={{ display: "flex", gap: 2 }}>
+        <Button
+          variant="text"
+          onClick={() => navigate("/")}
+        >
+          Feed
+        </Button>
 
-    <div style={{ marginBottom: 20 }}>
+        <Button
+          variant="text"
+          onClick={() => navigate("/create")}
+        >
+          Create Post
+        </Button>
+      </Box>
 
-      <button onClick={() => navigate("/")}>
-        Feed
-      </button>
-
-      <button onClick={() => navigate("/create")}>
-        Create Post
-      </button>
-
-      <button onClick={logout}>
+      <Button
+        variant="outlined"
+        color="error"
+        onClick={logout}
+      >
         Logout
-      </button>
-
-    </div>
+      </Button>
+    </Box>
 
   )
 }
