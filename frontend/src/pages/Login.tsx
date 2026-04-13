@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {API} from "../api/api";
 import { useNavigate } from "react-router-dom";
-import { TextField, Button, Box, Paper, Typography } from "@mui/material";
+import { TextField, Button, Box, Paper, Typography, Link } from "@mui/material";
 
 const Login = () => {
 
@@ -18,9 +18,9 @@ const Login = () => {
     form.append("username", email)
     form.append("password", password)
 
-    // const res = await API.post("/login/", form)
+    const res = await API.post("/login/", form)
 
-    // localStorage.setItem("token", res.data.access_token)
+    localStorage.setItem("token", res.data.access_token)
     navigate("/", { replace: true }); 
     
   }
@@ -65,6 +65,20 @@ const Login = () => {
           >
             Login
           </Button>
+
+          <Typography variant="body2" align="center">
+            Don't have an account?{" "}
+            <Link
+              component="button"
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/register", { replace: true });
+              }}
+            >
+              Register
+            </Link>
+          </Typography>
 
         </Box>
       </Paper>
