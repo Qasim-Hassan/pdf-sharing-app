@@ -66,6 +66,20 @@ In the backend directory, create a file named:
 
 <pre>.env</pre>
 
+Fill the ".env" file using this template (replace the values with your owm):
+```
+db_hostname=localhost
+db_name=your_database_name
+db_username=your_database_user
+db_password=your_database_password
+db_port=5432
+
+secret_key=your_secret_key
+algorithm=HS256
+access_token_expire_minutes=30
+```
+--- 
+
 ### 🔧 Backend Setup
 
 ```bash
