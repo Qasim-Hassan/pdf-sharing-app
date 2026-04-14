@@ -104,11 +104,12 @@ Backend runs on: `http://localhost:8000`
 
 ```bash
 cd frontend
-npm install
+npm install --audit-level=high
 npm run dev
 ```
 
 Frontend runs on: `http://localhost:5173` (or configured port)
+[Note: Use "npm install --audit-level=high" to ensure you don't install a package with "high" vulnerability.
 
 ---
 
