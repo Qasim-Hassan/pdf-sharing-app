@@ -60,6 +60,12 @@ Users can:
 
 ## ⚙️ Setup & Installation
 
+### 🛠️ Configure
+
+In the backend directory, create a file named:
+
+<pre>.env</pre>
+
 ### 🔧 Backend Setup
 
 ```bash
