@@ -73,7 +73,7 @@ db_name=your_database_name
 db_username=your_database_user
 db_password=your_database_password
 db_port=5432
-
+db_url=your_db_connection_string #OPTIONAL
 secret_key=your_secret_key
 algorithm=HS256
 access_token_expire_minutes=30
