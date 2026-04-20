@@ -78,6 +78,8 @@ secret_key=your_secret_key
 algorithm=HS256
 access_token_expire_minutes=30
 ```
+Make sure that all the values except **access_token_expire_minutes** are in ```string``` format.
+
 --- 
 
 ### 🔧 Backend Setup
