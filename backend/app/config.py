@@ -1,7 +1,6 @@
-from pydantic_settings import BaseSettings
-from pathlib import Path
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
-BASE_DIR = Path(__file__).resolve().parent
+#postgresql://<username>:<password>@<ip-address/hostname>/<database-name>
 
 class Settings(BaseSettings):
     db_hostname: str
@@ -15,6 +14,8 @@ class Settings(BaseSettings):
     access_token_expire_minutes: int
 
     class Config:
-        env_file = BASE_DIR / ".env"   
+        env_file = ".env"
+
+# model_config = SettingsConfigDict(env_file='.env', env_file_encoding='utf-8')
 
 settings = Settings()
