@@ -79,6 +79,9 @@ ALGORITHM = HS256
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 ```
 
+### Connecting with Supabase
+
+In your supabase project, go to ```connect```, and select ```Direct Connection String```. Then select ```Session Pooler``` (that allows IPv4), and use the credentials provided by *Supabase*. **Don't use the connection string, instead use the "host", "port", "user", etc. individually (set these values in .env file)**.
 
 --- 
 
