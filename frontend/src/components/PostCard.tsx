@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import type { PostFeed } from "../types/types"
 import {API} from "../api/api"
+import { Card, CardContent, Typography, Button, Box, Stack } from "@mui/material";
 
 interface Props {
   post: PostFeed
@@ -18,17 +19,60 @@ const PostCard: any = ({ post }: Props) => {
     }
 
   return (
-    <div style={{ border: "1px solid gray", padding: 10, margin: 10 }}>
-      <h3>{post.Post.title}</h3>
+    <Card
+      sx={{
+        maxWidth: 500,
+        margin: 2,
+        borderRadius: 3,
+        boxShadow: 2,
+      }}
+    >
+      <CardContent>
+        <Stack spacing={1.5}>
+          {/* Title */}
+          <Typography variant="h6" fontWeight={600}>
+            {post.Post.title}
+          </Typography>
 
-      <p>Author: {post.Post.owner.email}</p>
+          {/* Author */}
+          <Typography variant="body2" color="text.secondary">
+            Author: {post.Post.owner.email}
+          </Typography>
 
-      <p>Subscribers: {post.subscribers}</p>
+          {/* Subscribers */}
+          <Typography variant="body2" color="text.secondary">
+            Subscribers: {post.subscribers}
+          </Typography>
 
-      <button onClick={()=>subscribe(post)}>Subscribe</button>
-      <Link to={`/posts/${post.Post.id}`}>View Post</Link>
-    </div>
-  )
+          {/* Actions */}
+          <Box sx={{
+            display: "flex",
+            mt: 1,
+            gap: 2,
+          }}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => subscribe(post)}
+              sx={{ textTransform: "none", borderRadius: 2 }}
+            >
+              Subscribe
+            </Button>
+
+            <Button
+              component={Link}
+              to={`/posts/${post.Post.id}`}
+              variant="outlined"
+              color="primary"
+              sx={{ textTransform: "none", borderRadius: 2 }}
+            >
+              View Post
+            </Button>
+          </Box>
+        </Stack>
+      </CardContent>
+    </Card>
+  );
 }
 
 export default PostCard
