@@ -68,15 +68,15 @@ In the backend directory, create a file named:
 
 Fill the ".env" file using this template (replace the values with your owm):
 ```
-db_hostname=localhost
-db_name=your_database_name
-db_username=your_database_user
-db_password=your_database_password
-db_port=5432
-db_url=your_db_connection_string #OPTIONAL
-secret_key=your_secret_key
-algorithm=HS256
-access_token_expire_minutes=30
+DB_HOSTNAME = localhost
+DB_NAME = your_db_name
+DB_USERNAME = postgres
+DB_PASSWORD = your_db_password
+DB_PORT = 5432
+DB_URL = your_db_connection_string #OPTIONAL
+SECRET_KEY = your_secret_key
+ALGORITHM = HS256
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
 ```
 Make sure that all the values except **access_token_expire_minutes** are in ```string``` format.
 
