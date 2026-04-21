@@ -78,7 +78,7 @@ SECRET_KEY = your_secret_key
 ALGORITHM = HS256
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 ```
-Make sure that all the values except **access_token_expire_minutes** are in ```string``` format.
+
 
 --- 
 
